@@ -1,0 +1,54 @@
+{
+    "source_lang": {
+        "type": "string",
+        "description": "源语言",
+        "default": "中文"
+    },
+    "target_lang": {
+        "type": "string",
+        "description": "目标语言",
+        "default": "日语"
+    },
+    "send_original": {
+        "type": "bool",
+        "description": "追发原文",
+        "hint": "翻译完成后单独发送一条原文消息作为字幕",
+        "default": false
+    },
+    "bracket_filter": {
+        "type": "bool",
+        "description": "翻译前过滤括号",
+        "hint": "开启后，翻译前移除（旁白）、【注释】、(stage) 等内容",
+        "default": false
+    },
+    "api_base": {
+        "type": "string",
+        "description": "API 端点",
+        "hint": "兼容 OpenAI 格式。留空则自动匹配 AstrBot 当前聊天模型的配置",
+        "default": ""
+    },
+    "api_key": {
+        "type": "string",
+        "description": "API Key",
+        "hint": "留空则自动使用 AstrBot 当前聊天模型的 Key",
+        "default": ""
+    },
+    "api_model": {
+        "type": "string",
+        "description": "翻译模型名",
+        "hint": "留空则自动使用 AstrBot 当前聊天模型的配置",
+        "default": ""
+    },
+    "timeout": {
+        "type": "int",
+        "description": "请求超时（秒）",
+        "hint": "翻译 API 的最大等待时间",
+        "default": 30
+    },
+    "max_tokens": {
+        "type": "int",
+        "description": "输出上限",
+        "hint": "翻译结果的最大 token 数，长文本可调大",
+        "default": 4096
+    }
+}
