@@ -2,3 +2,4 @@ name: astrbot_plugin_llm_translator
 desc: LLM 回复翻译器，支持任意语言互译
 author: FlandreX
 version: 1.0.0
+repo: https://github.com/Flandre-Extra/astrbot_plugin_llm_translator
