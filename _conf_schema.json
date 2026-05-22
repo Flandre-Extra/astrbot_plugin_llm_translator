@@ -15,11 +15,11 @@
         "hint": "翻译完成后单独发送一条原文消息作为字幕",
         "default": false
     },
-    "bracket_filter": {
-        "type": "bool",
-        "description": "翻译前过滤括号",
-        "hint": "开启后，翻译前移除（旁白）、【注释】、(stage) 等内容",
-        "default": false
+    "text_filter_regex": {
+        "type": "string",
+        "description": "正则过滤",
+        "hint": "自定义正则过滤文本内容，匹配到的内容会在翻译前被移除。留空则不过滤。示例：（[^（）]*）|\\([^()]*\\)|【[^【】]*】|\\[[^\\[\\]]*\\]|「[^「」]*」|『[^『』]*』",
+        "default": ""
     },
     "api_base": {
         "type": "string",

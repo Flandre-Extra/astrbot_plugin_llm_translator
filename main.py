@@ -1,15 +1,10 @@
 import httpx
+import re
 from astrbot.api.event import AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api.event.filter import on_llm_response, after_message_sent
 from astrbot.api.provider import LLMResponse
 from astrbot import logger
-
-try:
-    from .filter import strip_brackets
-except ImportError:
-    import filter as _filter_mod
-    strip_brackets = _filter_mod.strip_brackets
 
 
 @register("astrbot_plugin_llm_translator", "FlandreX", "LLM 回复翻译器", "1.0.0")
@@ -57,8 +52,13 @@ class LLMTranslatorPlugin(Star):
             return
 
         original = text
-        if self.config.get("bracket_filter"):
-            text = strip_brackets(text)
+        filter_re = self.config.get("text_filter_regex", "").strip()
+        if filter_re:
+            try:
+                text = re.sub(filter_re, "", text)
+            except re.error as e:
+                logger.warning(f"[llm_translator] 正则过滤表达式错误: {e}")
+                pass
             if not text:
                 return
 
