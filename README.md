@@ -2,6 +2,8 @@
 
 AstrBot 插件：使用任意 OpenAI 兼容 API 将 LLM 回复翻译到目标语言。
 
+v1.0.1 | 仓库: https://github.com/Flandre-Extra/astrbot_plugin_llm_translator
+
 ## 安装
 
 1. AstrBot Web 面板 → 插件管理 → 上传插件
@@ -15,7 +17,7 @@ AstrBot 插件：使用任意 OpenAI 兼容 API 将 LLM 回复翻译到目标语
 | `source_lang` | string | 中文 | 源语言 |
 | `target_lang` | string | 日语 | 目标语言 |
 | `send_original` | bool | false | 翻译后追发一条原文消息 |
-| `bracket_filter` | bool | false | 翻译前过滤（旁白）、【注】、(stage) 等内容 |
+| `text_filter_regex` | string | 空 | 自定义正则过滤文本，匹配到的内容在翻译前被移除。留空则不过滤 |
 | `api_base` | string | 空 | 留空自动匹配 AstrBot 聊天模型配置 |
 | `api_key` | string | 空 | 留空自动使用 AstrBot 聊天模型 Key |
 | `api_model` | string | 空 | 留空自动使用 AstrBot 聊天模型配置 |
@@ -30,8 +32,8 @@ AstrBot 插件：使用任意 OpenAI 兼容 API 将 LLM 回复翻译到目标语
 
 ### 翻译 + 原文字幕
 
-`send_original` = true，翻译后额外发送原文。原文不受 bracket_filter 影响。
+`send_original` = true，翻译后额外发送原文。原文不受 text_filter_regex 影响。
 
-### 翻译 + 括号过滤
+### 翻译 + 正则过滤
 
-`bracket_filter` = true，翻译前移除旁白描述，仅翻译主体对话。
+填入 `text_filter_regex`，翻译前移除匹配内容。示例（过滤括号）：`（[^（）]*）|\([^()]*\)|【[^【】]*】|\[[^\[\]]*\]|「[^「」]*」|『[^『』]*』`
